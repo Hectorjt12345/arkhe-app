@@ -1,11 +1,19 @@
-// Tauri command handler for generating assets
+// Complete Tauri setup in main.rs
 
-use tauri::{command, State};
+use tauri::{self, command};
+
+fn main() {
+    tauri::Builder::default()
+        .setup(|app| {
+            // Setup code here
+            Ok(())
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
+}
 
 #[command]
-fn generate_asset(asset_name: String) -> Result<String, String> {
-    // Your asset generation logic here
-    // For example:
-    let asset = format!("Asset {} generated successfully!", asset_name);
-    Ok(asset)
+fn generate_asset(file: &str) {
+    // Integrate with engine pipeline module
+    // Code to generate asset
 }
